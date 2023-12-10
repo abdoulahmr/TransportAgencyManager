@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheuffeur Manager</title>
+</head>
+<body>
+    <div class="add">
+        <form method="post">
+            <label>Entrer le nom</label>
+            <input type="text" id="name" name="nom" required>
+            <label>Entrer le prenom</label>
+            <input type="text" id="name" name="prenom" required>
+            <label>Entrer le numéro de telphone</label>
+            <input type="tel" id="telphone" name="telephone" required>
+            <label>Entere l'email</label>
+            <input type="email" id="email" name="email" required>
+            <label>Selectionner l'agence</label>
+            <select id ="agence" name="agence">
+                {% for element in agence_list %}
+                <option value="{{element[0]}}">{{element[1]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" id="sub" value="submit">
+        </form>    
+    </div>
+    <div class="list">
+        <table>
+            <thead>
+                <tr>
+                    <th>chauffeure ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Agence</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in chauffeure_list %}
+                    <tr>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[1] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>{{ element[3] }}</td>
+                        <td>{{ element[4] }}</td>
+                        <td>{{ element[6] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/chauffeur/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

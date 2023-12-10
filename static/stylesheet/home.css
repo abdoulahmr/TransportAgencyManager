@@ -1,0 +1,47 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.card {
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  border-radius: 4px;
+  background: #212121;
+  display: flex;
+  gap: 5px;
+  padding: .4em;
+}
+.card a {
+  font-size: 1.5em;
+  height: 100vh;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .5s;
+  background: #212121;
+  border: 1px solid #ff5a91;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+} 
+.card a:hover {
+  flex: 5;
+} 
+
+.card a span {
+  min-width: 14em;
+  padding: .5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: all .5s;
+  text-transform: uppercase;
+  color: #ff568e;
+  letter-spacing: .1em;
+} 
+
+.card a:hover span {
+  transform: rotate(0);
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Manager</title>
+</head>
+<body>
+    <div class="add">
+        <form method="post">
+            <label>Entrer la date de la mission</label>
+            <input type="date" id="date" name="date" required>
+            <label>Entrer l'heur de debut</label>
+            <input type="time" id="heurdeb" name="heurdebut" required>
+            <label>Entrer l'heur de fin</label>
+            <input type="time" id="heurfin" name="heurfin" required>
+            <select name="chauffeur" id="chauf">
+                {% for chauffeur in chauffeure_list %}
+                <option value="{{chauffeur[0]}}">{{chauffeur}}</option>
+                {% endfor %}
+            </select>
+            <select name="vehicule" id="vehicule">
+                {% for vehicule in vehicule_list %}
+                <option value="{{vehicule[0]}}">{{vehicule}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" id="sub" value="submit">
+        </form>
+    </div>
+    <div class="lsit">
+        <table>
+            <thead>
+                <tr>
+                    <th>Mission ID</th>
+                    <th>Date</th>
+                    <th>Heur Debut</th>
+                    <th>Heur Fin</th>
+                    <th>chauffeur Nom</th>
+                    <th>chauffeur Prenom</th>
+                    <th>Vehicule Immatriculation</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in mission_list %}
+                    <tr>
+                        <td>{{ element[5] }}</td>
+                        <td>{{ element[6] }}</td>
+                        <td>{{ element[7] }}</td>
+                        <td>{{ element[8] }}</td>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[1] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>{{ element[3] }}</td>
+                        <td>{{ element[4] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/mission/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+</body>
+</html>

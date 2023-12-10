@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="add">
+        <form method="post">
+            <input type="text" name="marque" id="marque" required>
+            <input type="text" name="modele" id="modele" required>
+            <input type="submit">
+        </form>
+    </div>
+    <div class="lsit">
+        <table>
+            <thead>
+                <tr>
+                    <th>TypeID</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in modele_list %}
+                    <tr>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[1] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/type/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+</body>
+</html>

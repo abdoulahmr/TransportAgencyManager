@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="add">
+        <form method="post">
+            <input type="text" name="adress" id="adress" required>
+            <input type="submit" id="sub">
+        </form>
+    </div>
+    <div class="lsit">
+        <table>
+            <thead>
+                <tr>
+                    <th>AgenceID</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for agence in agence_list %}
+                    <tr>
+                        <td>{{ agence[0] }}</td>
+                        <td>{{ agence[1] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/agence/sup:{{agence[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+</body>
+</html>

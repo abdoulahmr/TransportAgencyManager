@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicule Manager</title>
+</head>
+<body>
+    <div class="add">
+        <form method="post">
+            <label>Entrer le numero d'immatriculation</label>
+            <input type="number" id="imma" name="immatriculation" required>
+            <label>Entrer la date d'achat</label>
+            <input type="date" id="date" name="dateachat" required>
+            <select id="modele" name="modele">
+                {% for modele in modele_list %}
+                <option value="{{modele[0]}}">{{modele}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" id="sub" value="submit">
+        </form>    
+    </div>
+    <div class="lsit">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vehicule ID</th>
+                    <th>Immatriculation</th>
+                    <th>DateAchat</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in vehicule_list %}
+                    <tr>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>{{ element[3] }}</td>
+                        <td>{{ element[5] }}</td>
+                        <td>{{ element[6] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/vehicule/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>    
+</body>
+</html>
