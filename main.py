@@ -148,12 +148,15 @@ def deleterevision(id):
     connection.commit()
     return redirect(url_for('revision'))
 
-@app.route("/lists")
+@app.route("/lists",methods = ['GET' , 'POST'])
 def lists():
     chauffeure_list = cursor.execute('SELECT * FROM Chauffeur').fetchall()
-    #chauffeure_list_by_name = cursor.execute('SELECT * FROM Chauffeur GROUP BY Nom').fetchall()
-    #mission_list = cursor.execute("SELECT * FROM Mission").fetchall()
-    #mission_list_between = cursor.execute("SELECT * FROM Mission WHERE Date BETWEEN ? AND ?",[stdate,nddate]).fetchall() #define stdate,nddate
+    chauffeure_list_by_name = cursor.execute('SELECT * FROM Chauffeur GROUP BY Nom').fetchall()
+    mission_list = cursor.execute("SELECT * FROM Mission").fetchall()
+    if request.method == "POST":
+        stdate = request.form['stdate']
+        nddate = request.form['nddate']
+        mission_list_between = cursor.execute("SELECT * FROM Mission WHERE Date BETWEEN ? AND ?",[stdate,nddate]).fetchall()
     #mission_list_by_days = cursor.execute('''SELECT Mission.*, Chauffeur.* 
     #                                                FROM Mission JOIN Chauffeur ON Mission.ChauffeurID = Chauffeur.ChauffeurID
     #                                                GEOUP BY Date''').fetchall()
@@ -174,7 +177,8 @@ def lists():
     #                                                GROUP BY VehiculeID''').fetchall()
     #
     return render_template("lists.html"
-                           ,chauffeure_list=chauffeure_list)
+                           ,chauffeure_list=chauffeure_list, chauffeure_list_by_name=chauffeure_list_by_name
+                           ,mission_list=mission_list)
 
 if __name__ == "__main__":
     app.run(debug=True)

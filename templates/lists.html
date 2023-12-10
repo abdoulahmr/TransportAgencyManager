@@ -7,7 +7,7 @@
 </head>
 <body>
     <details>
-        <summary>list des chauffeure</summary>
+        <summary>Liste des chauffeurs</summary>
         <table>
             <thead>
                 <tr>
@@ -31,6 +31,74 @@
                         <td>
                             <a>Edit</a>
                             <a href="/chauffeur/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </details>
+    <details>
+        <summary>Liste des chauffeurs groupés par nom</summary>
+        <table>
+            <thead>
+                <tr>
+                    <th>chauffeure ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Agence</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in chauffeure_list_by_name %}
+                    <tr>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[1] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>{{ element[3] }}</td>
+                        <td>{{ element[4] }}</td>
+                        <td>{{ element[6] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/chauffeur/sup:{{element[0]}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </details>
+    <details>
+        <summary>Liste des missions</summary>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mission ID</th>
+                    <th>Date</th>
+                    <th>Heur Debut</th>
+                    <th>Heur Fin</th>
+                    <th>chauffeur Nom</th>
+                    <th>chauffeur Prenom</th>
+                    <th>Vehicule Immatriculation</th>
+                    <th>Marque</th>
+                    <th>Modele</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in mission_list %}
+                    <tr>
+                        <td>{{ element[5] }}</td>
+                        <td>{{ element[6] }}</td>
+                        <td>{{ element[7] }}</td>
+                        <td>{{ element[8] }}</td>
+                        <td>{{ element[0] }}</td>
+                        <td>{{ element[1] }}</td>
+                        <td>{{ element[2] }}</td>
+                        <td>{{ element[3] }}</td>
+                        <td>{{ element[4] }}</td>
+                        <td>
+                            <a>Edit</a>
+                            <a href="/mission/sup:{{element[0]}}">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
