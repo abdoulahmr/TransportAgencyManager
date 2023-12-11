@@ -3,107 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lists</title>
 </head>
 <body>
-    <details>
-        <summary>Liste des chauffeurs</summary>
-        <table>
-            <thead>
-                <tr>
-                    <th>chauffeure ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Telephone</th>
-                    <th>Email</th>
-                    <th>Agence</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for element in chauffeure_list %}
-                    <tr>
-                        <td>{{ element[0] }}</td>
-                        <td>{{ element[1] }}</td>
-                        <td>{{ element[2] }}</td>
-                        <td>{{ element[3] }}</td>
-                        <td>{{ element[4] }}</td>
-                        <td>{{ element[6] }}</td>
-                        <td>
-                            <a>Edit</a>
-                            <a href="/chauffeur/sup:{{element[0]}}">Delete</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </details>
-    <details>
-        <summary>Liste des chauffeurs groupés par nom</summary>
-        <table>
-            <thead>
-                <tr>
-                    <th>chauffeure ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Telephone</th>
-                    <th>Email</th>
-                    <th>Agence</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for element in chauffeure_list_by_name %}
-                    <tr>
-                        <td>{{ element[0] }}</td>
-                        <td>{{ element[1] }}</td>
-                        <td>{{ element[2] }}</td>
-                        <td>{{ element[3] }}</td>
-                        <td>{{ element[4] }}</td>
-                        <td>{{ element[6] }}</td>
-                        <td>
-                            <a>Edit</a>
-                            <a href="/chauffeur/sup:{{element[0]}}">Delete</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </details>
-    <details>
-        <summary>Liste des missions</summary>
-        <table>
-            <thead>
-                <tr>
-                    <th>Mission ID</th>
-                    <th>Date</th>
-                    <th>Heur Debut</th>
-                    <th>Heur Fin</th>
-                    <th>chauffeur Nom</th>
-                    <th>chauffeur Prenom</th>
-                    <th>Vehicule Immatriculation</th>
-                    <th>Marque</th>
-                    <th>Modele</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for element in mission_list %}
-                    <tr>
-                        <td>{{ element[5] }}</td>
-                        <td>{{ element[6] }}</td>
-                        <td>{{ element[7] }}</td>
-                        <td>{{ element[8] }}</td>
-                        <td>{{ element[0] }}</td>
-                        <td>{{ element[1] }}</td>
-                        <td>{{ element[2] }}</td>
-                        <td>{{ element[3] }}</td>
-                        <td>{{ element[4] }}</td>
-                        <td>
-                            <a>Edit</a>
-                            <a href="/mission/sup:{{element[0]}}">Delete</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </details>
+    <form action="/lists" method="post">
+        <div>
+            <details>
+                <summary>Liste des chauffeurs</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>chauffeure ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
+                            <th>Agence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in chauffeure_list %}
+                            <tr>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                                <td>{{ element[6] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des chauffeurs groupés par nom</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>chauffeure ID</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Telephone</th>
+                            <th>Email</th>
+                            <th>Agence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in chauffeure_list_by_name %}
+                            <tr>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                                <td>{{ element[6] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions</summary>        
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions entre deux jours donnés</summary>
+                <input type="date" name="stdate">
+                <input type="date" name="nddate">
+                <input type="submit" value="submit">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_between %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions groupées par jour</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_by_days %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions groupées par jour, puis par chauffeur</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_by_days_chauff %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions groupées par jour, puis par chauffeur, puis par véhicule</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_by_days_chauff_vih %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des Agence</summary>        
+                <table>
+                    <thead>
+                        <tr>
+                            <th>AgenceID</th>
+                            <th>Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for agence in agence_list %}
+                            <tr>
+                                <td>{{ agence[0] }}</td>
+                                <td>{{ agence[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>    
+        <div>
+            <details>
+                <summary>Liste des Vehicules</summary>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vehicule ID</th>
+                            <th>Immatriculation</th>
+                            <th>DateAchat</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in vehicule_list %}
+                            <tr>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[4] }}</td>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions à partir d'un jour j</summary>
+                <input type="date" name="datefrom">
+                <input type="submit" value="submit">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_from %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions jusqu'à un jour j</summary>
+                <input type="date" name="dateto">
+                <input type="submit" value="submit">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in mission_list_to %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div>
+            <details>
+                <summary>Liste des missions jusqu'à un jour j</summary>
+                <input type="date" name="dateto">
+                <input type="submit" value="submit">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mission ID</th>
+                            <th>Date</th>
+                            <th>Heur Debut</th>
+                            <th>Heur Fin</th>
+                            <th>chauffeur Nom</th>
+                            <th>chauffeur Prenom</th>
+                            <th>Vehicule Immatriculation</th>
+                            <th>Marque</th>
+                            <th>Modele</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for element in revision_list_betwen %}
+                            <tr>
+                                <td>{{ element[5] }}</td>
+                                <td>{{ element[6] }}</td>
+                                <td>{{ element[7] }}</td>
+                                <td>{{ element[8] }}</td>
+                                <td>{{ element[0] }}</td>
+                                <td>{{ element[1] }}</td>
+                                <td>{{ element[2] }}</td>
+                                <td>{{ element[3] }}</td>
+                                <td>{{ element[4] }}</td>
+                                <td>
+                                    <a>Edit</a>
+                                    <a href="/mission/sup:{{element[0]}}">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </details>
+        </div>
+
+    </form>
 </body>
 </html>
