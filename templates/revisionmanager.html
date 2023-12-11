@@ -14,7 +14,7 @@
             <input type="text" id="type" name="type">
             <select name="vehicule" id="vehicule">
                 {% for vehicule in vehicule_list %}
-                <option value="{{vehicule}}">{{vehicule}}</option>
+                <option value="{{vehicule[0]}}">{{vehicule}}</option>
                 {% endfor %}
             </select>
             <input type="submit" id="sub" value="submit">
@@ -26,10 +26,7 @@
                 <tr>
                     <th>Mission ID</th>
                     <th>Date</th>
-                    <th>Heur Debut</th>
-                    <th>Heur Fin</th>
-                    <th>chauffeur Nom</th>
-                    <th>chauffeur Prenom</th>
+                    <th>Type</th>
                     <th>Vehicule Immatriculation</th>
                     <th>Marque</th>
                     <th>Modele</th>
@@ -38,28 +35,16 @@
             <tbody>
                 {% for element in revision_list %}
                     <tr>
-                        <td>{{ element[5] }}</td>
-                        <td>{{ element[6] }}</td>
-                        <td>{{ element[7] }}</td>
-                        <td>{{ element[8] }}</td>
                         <td>{{ element[0] }}</td>
                         <td>{{ element[1] }}</td>
                         <td>{{ element[2] }}</td>
-                        <td>{{ element[3] }}</td>
-                        <td>{{ element[4] }}</td>
-                        <td>
-                            <a>Edit</a>
-                            <a href="/mission/sup:{{element[0]}}">Delete</a>
-                        </td>
+                        <td>{{ element[6] }}</td>
+                        <td>{{ element[8] }}</td>
+                        <td>{{ element[9] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>    
-    <div class="lists">
-        {% for revision in revision_list %}
-                {{ revision }}
-        {% endfor %}
-    </div>
 </body>
 </html>

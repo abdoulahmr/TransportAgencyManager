@@ -134,6 +134,7 @@ def revision():
                                    FROM Revision
                                    JOIN Vehicule ON Vehicule.VehiculeID = Revision.VehiculeID
                                    JOIN Type ON Type.TypeID = Vehicule.TypeID''').fetchall()
+    print(revision_list)
     if request.method == "POST":
         date = request.form['date']
         revtype = request.form['type']
@@ -216,7 +217,46 @@ def lists():
                                         JOIN Chauffeur ON Chauffeur.ChauffeurID = Mission.ChauffeurID
                                         JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
                                         JOIN Type ON Vehicule.TypeID = Type.TypeID''').fetchall()
-        
+    mission_list_by_chauff = cursor.execute('''SELECT Chauffeur.Nom, Chauffeur.Prenom,
+                                        Vehicule.Immatriculation, Type.Marque, Type.Modele,
+                                        Mission.* 
+                                        FROM Mission
+                                        JOIN Chauffeur ON Chauffeur.ChauffeurID = Mission.ChauffeurID
+                                        JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
+                                        JOIN Type ON Vehicule.TypeID = Type.TypeID
+                                        GROUP BY Mission.ChauffeurID''').fetchall()
+    mission_list_by_vih = cursor.execute('''SELECT Chauffeur.Nom, Chauffeur.Prenom,
+                                        Vehicule.Immatriculation, Type.Marque, Type.Modele,
+                                        Mission.* 
+                                        FROM Mission
+                                        JOIN Chauffeur ON Chauffeur.ChauffeurID = Mission.ChauffeurID
+                                        JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
+                                        JOIN Type ON Vehicule.TypeID = Type.TypeID
+                                        GROUP BY Mission.VehiculeID''').fetchall()
+    mission_list_by_date_vih = cursor.execute('''SELECT Chauffeur.Nom, Chauffeur.Prenom,
+                                        Vehicule.Immatriculation, Type.Marque, Type.Modele,
+                                        Mission.* 
+                                        FROM Mission
+                                        JOIN Chauffeur ON Chauffeur.ChauffeurID = Mission.ChauffeurID
+                                        JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
+                                        JOIN Type ON Vehicule.TypeID = Type.TypeID
+                                        GROUP BY Mission.Date,Mission.VehiculeID''').fetchall()
+    mission_list_by_chauf_vih = cursor.execute('''SELECT Chauffeur.Nom, Chauffeur.Prenom,
+                                        Vehicule.Immatriculation, Type.Marque, Type.Modele,
+                                        Mission.* 
+                                        FROM Mission
+                                        JOIN Chauffeur ON Chauffeur.ChauffeurID = Mission.ChauffeurID
+                                        JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
+                                        JOIN Type ON Vehicule.TypeID = Type.TypeID
+                                        GROUP BY Mission.ChauffeurID,Mission.VehiculeID''').fetchall()
+    revision_list = cursor.execute('''SELECT Revision.*, Vehicule.*, Type.* 
+                                   FROM Revision
+                                   JOIN Vehicule ON Vehicule.VehiculeID = Revision.VehiculeID
+                                   JOIN Type ON Type.TypeID = Vehicule.TypeID''').fetchall()
+    revision_list_from = cursor.execute('''SELECT Revision.*, Vehicule.*, Type.* 
+                                   FROM Revision
+                                   JOIN Vehicule ON Vehicule.VehiculeID = Revision.VehiculeID
+                                   JOIN Type ON Type.TypeID = Vehicule.TypeID''').fetchall()
     if request.method == "POST":
         stdate = request.form['stdate']
         nddate = request.form['nddate']
@@ -246,10 +286,11 @@ def lists():
                                         JOIN Vehicule ON Vehicule.VehiculeID = Mission.VehiculeID
                                         JOIN Type ON Vehicule.TypeID = Type.TypeID
                                         WHERE Date <= ?''',[dateto]).fetchall()
-        revision_list_betwen = cursor.execute('''SELECT Revision.*, Vehicule.*, Type.* 
-                                   FROM Revision
-                                   JOIN Vehicule ON Vehicule.VehiculeID = Revision.VehiculeID
-                                   JOIN Type ON Type.TypeID = Vehicule.TypeID''',[stdate,nddate]).fetchall()
+        revision_list_from = cursor.execute('''SELECT Revision.*, Vehicule.*, Type.* 
+                                        FROM Revision
+                                        JOIN Vehicule ON Vehicule.VehiculeID = Revision.VehiculeID
+                                        JOIN Type ON Type.TypeID = Vehicule.TypeID
+                                        WHERE Revision.Date < ?''',[datefrom]).fetchall()
     
     return render_template("lists.html",
                             chauffeure_list=chauffeure_list,chauffeure_list_by_name=chauffeure_list_by_name,
@@ -257,7 +298,10 @@ def lists():
                             mission_list_by_days=mission_list_by_days,mission_list_by_days_chauff=mission_list_by_days_chauff,
                             mission_list_by_days_chauff_vih=mission_list_by_days_chauff_vih,agence_list=agence_list,
                             vehicule_list=vehicule_list,mission_list_from=mission_list_from,
-                            mission_list_to=mission_list_to,revision_list_betwen=revision_list_betwen
+                            mission_list_to=mission_list_to,revision_list_betwen=revision_list_betwen,
+                            mission_list_by_chauff=mission_list_by_chauff,mission_list_by_vih=mission_list_by_vih,
+                            mission_list_by_date_vih=mission_list_by_date_vih,mission_list_by_chauf_vih=mission_list_by_chauf_vih,
+                            revision_list=revision_list,revision_list_from=revision_list_from
                             )
 
 if __name__ == "__main__":
