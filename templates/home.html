@@ -1,21 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>TBHL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBHL Transport Company</title>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/home.css')}}">
-
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/appbar.css')}}">
 </head>
 <body>
-    <div class="card">
-        <a href="/agence"><p><span>Agence</span></p></a>
-        <a href="/type"><p><span>Type</span></p></a>
-        <a href="/chauffeur"><p><span>Chaufeur</span></p></a>
-        <a href="/vehicule"><p><span>Vehicule</span></p></a>
-        <a href="/mission"><p><span>Mission</span></p></a>
-        <a href="/revision"><p><span>Revision</span></p></a>
-        <a href="/lists"></a><p><span>Tout les lists</span></p></a>
-    </div>
+    <header>
+        <a href="/" id="logo">TBHL</a>
+        <nav>
+            <ul>
+                <li><a href="/agence">Agencies</a></li>
+                <li><a href="/type">Type</a></li>
+                <li><a href="/mission">Missions</a></li>
+                <li><a href="/vehicule">Vehicles</a></li>
+                <li><a href="/chauffeur">Drivers</a></li>
+                <li><a href="/revision">Revisions</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="agencies">
+        <h2>Our Agencies</h2>
+        <div class="card-container">
+            {% for element in agence_list %}
+            <div class="card">
+                <div class="card-border-top">
+                </div>
+                <div class="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="12" viewBox="0 0 384 512">
+                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                    </svg>
+                </div>
+                <span>{{element[1]}}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="missions">
+        <h2>Recent Missions</h2>
+        <div class="card-container">
+            {% for element in mission_list %}
+            <div class="card">
+                <div class="card-border-top">
+                </div>
+                <div class="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                    </svg>
+                </div>
+                <span>{{element[0]}} {{element[1]}}</span>
+                <p class="job"> {{element[3]}} {{element[4]}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="vehicles">
+        <h2>Our Vehicles</h2>
+        <div class="card-container">
+            {% for element in vehicule_list %}
+            <div class="card">
+                <div class="card-border-top">
+                </div>
+                <div class="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                        <path d="M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2V400v48c0 17.7-14.3 32-32 32H448c-17.7 0-32-14.3-32-32V400H96v48c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V400 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z"/>
+                    </svg>
+                </div>
+                <span>{{element[4]}} {{element[5]}}</span>
+                <p class="job">{{element[2]}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="drivers">
+        <h2>Our Drivers</h2>
+        <div class="card-container">
+            {% for element in chauffeure_list %}
+            <div class="card">
+                <div class="card-border-top">
+                </div>
+                <div class="img">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="10" viewBox="0 0 320 512">
+                        <path d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V256.9L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6h29.7c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H152z"/>
+                    </svg>
+                </div>
+                <span>{{element[1]}} {{element[2]}}</span>
+                <p class="job"> {{element[6]}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 </body>
 </html>

@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/body.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/appbar.css')}}">
     <title>Revision Manager</title>
 </head>
 <body>
+    <header>
+        <a href="/" id="logo">TBHL</a>
+        <nav>
+            <ul>
+                <li><a href="/agence">Agencies</a></li>
+                <li><a href="/type">Type</a></li>
+                <li><a href="/mission">Missions</a></li>
+                <li><a href="/vehicule">Vehicles</a></li>
+                <li><a href="/chauffeur">Drivers</a></li>
+                <li><a href="/revision" class="selected">Revisions</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="add">
         <form method="post">
-            <label>Entrer la date</label>
+            <h2>Add Revision</h2>
+            <label>Enter date</label>
             <input type="date" id="date" name="date">
-            <label>Entrer le type</label>
+            <label>Enter decription</label>
             <input type="text" id="type" name="type">
+            <label>Select vehicule</label>
             <select name="vehicule" id="vehicule">
                 {% for vehicule in vehicule_list %}
-                <option value="{{vehicule[0]}}">{{vehicule}}</option>
+                <option value="{{vehicule[0]}}">{{vehicule[2]}}</option>
                 {% endfor %}
             </select>
             <input type="submit" id="sub" value="submit">
         </form>    
     </div>
-    <div class="lsit">
+    <div class="list">
+        <h2>Revision List</h2>
         <table>
             <thead>
                 <tr>
@@ -41,6 +59,7 @@
                         <td>{{ element[6] }}</td>
                         <td>{{ element[8] }}</td>
                         <td>{{ element[9] }}</td>
+                        <td><a href="/revision/sup:{{element[0]}}">Delete</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

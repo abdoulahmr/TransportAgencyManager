@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.add ,.list{
+    margin: 2vw;
+    border: 0.1rem solid black;
+    border-radius: 1rem;
+}
+.add *{
+    margin: 1vw;
+    display: block;
+}
+.add input, .add select{
+    padding: 0.5vw;
+    border-radius: 0.5rem;
+    width: 30vw;
+    box-shadow: none;
+}
+#sub{
+    background-color: #5cdb95;
+}
+.list{
+    padding: 1vw;
+}
+.list *{
+    margin: 1vw;
+}
+table {
+    width: 95%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 2vh 2vw;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #f01c1c;
+    color: #fff;
+    transition: 0.2s ease-in-out;
+}
+td a:hover{
+    background-color: #811010;
+}

@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/body.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/appbar.css')}}">
+    <title>Agence Manager</title>
 </head>
 <body>
+    <header>
+        <a href="/" id="logo">TBHL</a>
+        <nav>
+            <ul>
+                <li><a href="/agence" class="selected">Agencies</a></li>
+                <li><a href="/type">Type</a></li>
+                <li><a href="/mission">Missions</a></li>
+                <li><a href="/vehicles">Vehicles</a></li>
+                <li><a href="/chauffeur">Drivers</a></li>
+                <li><a href="/revision">Revisions</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="add">
         <form method="post">
+            <h2>Add Agency</h2>
+            <h3>Enter agency adress</h3>
             <input type="text" name="adress" id="adress" required>
             <input type="submit" id="sub">
         </form>
     </div>
-    <div class="lsit">
+    <div class="list">
+        <h2>Agency List</h2>
         <table>
             <thead>
                 <tr>
@@ -26,7 +44,6 @@
                         <td>{{ agence[0] }}</td>
                         <td>{{ agence[1] }}</td>
                         <td>
-                            <a>Edit</a>
                             <a href="/agence/sup:{{agence[0]}}">Delete</a>
                         </td>
                     </tr>

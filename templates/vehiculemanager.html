@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/body.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/appbar.css')}}">
     <title>Vehicule Manager</title>
 </head>
 <body>
+    <header>
+        <a href="/" id="logo">TBHL</a>
+        <nav>
+            <ul>
+                <li><a href="/agence">Agencies</a></li>
+                <li><a href="/type">Type</a></li>
+                <li><a href="/mission">Missions</a></li>
+                <li><a href="/vehicule" class="selected">Vehicles</a></li>
+                <li><a href="/chauffeur">Drivers</a></li>
+                <li><a href="/revision">Revisions</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="add">
         <form method="post">
-            <label>Entrer le numero d'immatriculation</label>
+            <h2>Add Vehicule</h2>
+            <label>Enter licence plate number</label>
             <input type="number" id="imma" name="immatriculation" required>
-            <label>Entrer la date d'achat</label>
+            <label>Enter buying date</label>
             <input type="date" id="date" name="dateachat" required>
+            <label>Select brand and model</label>
             <select id="modele" name="modele">
                 {% for modele in modele_list %}
-                <option value="{{modele[0]}}">{{modele}}</option>
+                <option value="{{modele[0]}}">{{modele[1]}} {{modele[2]}}</option>
                 {% endfor %}
             </select>
             <input type="submit" id="sub" value="submit">
         </form>    
     </div>
-    <div class="lsit">
+    <div class="list">
         <table>
             <thead>
                 <tr>
@@ -40,7 +57,6 @@
                         <td>{{ element[5] }}</td>
                         <td>{{ element[6] }}</td>
                         <td>
-                            <a>Edit</a>
                             <a href="/vehicule/sup:{{element[0]}}">Delete</a>
                         </td>
                     </tr>

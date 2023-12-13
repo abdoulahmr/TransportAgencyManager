@@ -3,43 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/body.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheet/appbar.css')}}">
     <title>Mission Manager</title>
 </head>
 <body>
+    <header>
+        <a href="/" id="logo">TBHL</a>
+        <nav>
+            <ul>
+                <li><a href="/agence" >Agencies</a></li>
+                <li><a href="/type">Type</a></li>
+                <li><a href="/mission" class="selected">Missions</a></li>
+                <li><a href="/vehicule">Vehicles</a></li>
+                <li><a href="/chauffeur">Drivers</a></li>
+                <li><a href="/revision">Revisions</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="add">
         <form method="post">
-            <label>Entrer la date de la mission</label>
+            <h2>Add Missions</h2>
+            <label>Enter mission date</label>
             <input type="date" id="date" name="date" required>
-            <label>Entrer l'heur de debut</label>
+            <label>Enter start time</label>
             <input type="time" id="heurdeb" name="heurdebut" required>
-            <label>Entrer l'heur de fin</label>
+            <label>Enter end time</label>
             <input type="time" id="heurfin" name="heurfin" required>
+            <label>Select driver</label>
             <select name="chauffeur" id="chauf">
                 {% for chauffeur in chauffeure_list %}
-                <option value="{{chauffeur[0]}}">{{chauffeur}}</option>
+                <option value="{{chauffeur[0]}}">{{chauffeur[1]}} {{chauffeur[2]}}</option>
                 {% endfor %}
             </select>
+            <label>Select vehicule</label>
             <select name="vehicule" id="vehicule">
                 {% for vehicule in vehicule_list %}
-                <option value="{{vehicule[0]}}">{{vehicule}}</option>
+                <option value="{{vehicule[0]}}">{{vehicule[2]}}</option>
                 {% endfor %}
             </select>
             <input type="submit" id="sub" value="submit">
         </form>
     </div>
-    <div class="lsit">
+    <div class="list">
         <table>
             <thead>
                 <tr>
                     <th>Mission ID</th>
                     <th>Date</th>
-                    <th>Heur Debut</th>
-                    <th>Heur Fin</th>
-                    <th>chauffeur Nom</th>
-                    <th>chauffeur Prenom</th>
-                    <th>Vehicule Immatriculation</th>
-                    <th>Marque</th>
-                    <th>Modele</th>
+                    <th>Time start</th>
+                    <th>Time end</th>
+                    <th>Driver First Name</th>
+                    <th>Driver Last Name</th>
+                    <th>Vehicule Licence Plate</th>
+                    <th>Brand</th>
+                    <th>Model</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +73,6 @@
                         <td>{{ element[3] }}</td>
                         <td>{{ element[4] }}</td>
                         <td>
-                            <a>Edit</a>
                             <a href="/mission/sup:{{element[0]}}">Delete</a>
                         </td>
                     </tr>
